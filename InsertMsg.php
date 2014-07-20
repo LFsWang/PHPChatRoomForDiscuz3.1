@@ -24,16 +24,15 @@
                 isset($_POST['Content'])){
                 
                 $uid=@$_POST['uid'];
-                $name=@$_POST['name'];
+                $name=@$_POST['name'];$name=mysql_real_escape_string($name);
                 $skey=@$_POST['skey'];
                 $room=@$_POST['room'];$room=intval($room);
-                $Content=@$_POST['Content'];
+				//Check Content
+                $Content=@$_POST['Content'];$sContent=mysql_real_escape_string($Content);
 
                 if(checkUid($uid)&&MakeSKey($name,$uid)==$skey&&checkRoomAcc($uid,$room)){
                     $UserAcceptFlag=true;
                 }
-                //Check Content
-                $sContent=mysql_real_escape_string($_POST["Content"]);
             }
         }
         
